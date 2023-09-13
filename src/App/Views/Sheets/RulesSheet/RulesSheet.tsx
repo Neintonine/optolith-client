@@ -11,12 +11,13 @@ import {
 import { translate } from "../../../Utilities/I18n"
 import { Markdown } from "../../Universal/Markdown"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { SheetWrapper } from "../SheetWrapper"
 
 interface Props {
   attributes: List<Record<AttributeCombined>>
   staticData: StaticDataRecord
-  useParchment: boolean
+  background: SheetBackground
   rules: RuleContainer
 }
 
@@ -128,7 +129,8 @@ export class RulesSheet extends React.Component<Props> {
     const {
       attributes,
       staticData,
-      useParchment,
+
+      background,
       rules,
     } = this.props
 
@@ -139,7 +141,7 @@ export class RulesSheet extends React.Component<Props> {
           title={translate (staticData) ("sheets.rulessheet.title")}
           attributes={attributes}
           staticData={staticData}
-          useParchment={useParchment}
+          background={background}
           >
           <table className="rules" ref={this.tableRef}>
             <thead>

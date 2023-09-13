@@ -3,6 +3,7 @@ import { List } from "../../../Data/List"
 import { Record } from "../../../Data/Record"
 import { AttributeCombined } from "../../Models/View/AttributeCombined"
 import { StaticDataRecord } from "../../Models/Wiki/WikiModel"
+import { SheetBackground } from "./SheetBackgroundDropdown"
 import { HeaderValue, SheetHeader } from "./SheetHeader"
 
 export interface SheetProps {
@@ -11,13 +12,22 @@ export interface SheetProps {
   id: string
   staticData: StaticDataRecord
   title: string
-  useParchment: boolean
+  background: SheetBackground
 }
 
 export const Sheet: React.FC<SheetProps> = props => {
-  const { addHeaderInfo, attributes, children, id, staticData, title, useParchment } = props
+  const {
+    addHeaderInfo,
+    attributes,
+    children,
+    id,
+    staticData,
+    title,
+    background,
+  } = props
 
-  const className = useParchment ? "sheet paper" : "sheet"
+  const image = background.getElement();
+  const className = image === null ? "sheet" : "sheet paper"
 
   return (
     <div className={className} id={id}>
@@ -28,7 +38,7 @@ export const Sheet: React.FC<SheetProps> = props => {
         staticData={staticData}
         />
       {children}
-      <img className="background" src="images/Character-Sheet-Background.jpg" aria-hidden />
+      {image}
     </div>
   )
 }

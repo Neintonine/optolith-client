@@ -17,6 +17,7 @@ import { DCPair } from "../../../Selectors/derivedCharacteristicsSelectors"
 import { translate } from "../../../Utilities/I18n"
 import { Maybe as NewMaybe } from "../../../Utilities/Maybe"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { SheetWrapper } from "../SheetWrapper"
 import { getAddCombatHeaderVals } from "./CombatSheet"
 import { CombatSheetArmorZones } from "./CombatSheetArmorZones"
@@ -40,7 +41,7 @@ interface Props {
   shieldsAndParryingWeapons: Maybe<Record<ShieldOrParryingWeapon>[]>
   conditions: List<Record<Condition>>
   states: List<Record<State>>
-  useParchment: boolean
+  background: SheetBackground
 }
 
 export const CombatSheetZones: React.FC<Props> = props => {
@@ -56,7 +57,7 @@ export const CombatSheetZones: React.FC<Props> = props => {
     shieldsAndParryingWeapons,
     conditions,
     states,
-    useParchment,
+    background,
   } = props
 
   const addHeader = getAddCombatHeaderVals (derivedCharacteristics)
@@ -69,7 +70,7 @@ export const CombatSheetZones: React.FC<Props> = props => {
         addHeaderInfo={addHeader}
         attributes={attributes}
         staticData={staticData}
-        useParchment={useParchment}
+        background={background}
         >
         <div className="upper">
           <CombatSheetTechniques

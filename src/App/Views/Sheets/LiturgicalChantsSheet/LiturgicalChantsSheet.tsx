@@ -18,6 +18,7 @@ import { translate } from "../../../Utilities/I18n"
 import { pipe, pipe_ } from "../../../Utilities/pipe"
 import { AttributeMods } from "../AttributeMods"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { HeaderValue } from "../SheetHeader"
 import { SheetWrapper } from "../SheetWrapper"
 import { LiturgicalChantsSheetBlessings } from "./LiturgicalChantsSheetBlessings"
@@ -33,7 +34,7 @@ interface Props {
   blessedTradition: Maybe<string>
   blessings: Maybe<List<Record<BlessingCombined>>>
   checkAttributeValueVisibility: boolean
-  useParchment: boolean
+  background: SheetBackground
   derivedCharacteristics: List<DCPair>
   liturgicalChants: Maybe<List<Record<LiturgicalChantWithRequirements>>>
   staticData: StaticDataRecord
@@ -48,7 +49,7 @@ export const LiturgicalChantsSheet: React.FC<Props> = props => {
     blessedTradition,
     blessings,
     checkAttributeValueVisibility,
-    useParchment,
+    background,
     derivedCharacteristics,
     liturgicalChants,
     staticData,
@@ -83,7 +84,7 @@ export const LiturgicalChantsSheet: React.FC<Props> = props => {
         addHeaderInfo={addHeader}
         staticData={staticData}
         attributes={attributes}
-        useParchment={useParchment}
+        background={background}
         >
         <div className="all">
           <LiturgicalChantsSheetLiturgicalChants

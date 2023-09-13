@@ -18,6 +18,7 @@ import { renderMaybe } from "../../../Utilities/ReactUtils"
 import { LabelBox } from "../../Universal/LabelBox"
 import { TextBox } from "../../Universal/TextBox"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { SheetWrapper } from "../SheetWrapper"
 import { BelongingsSheetItemsColumn } from "./BelongingsSheetItemsColumn"
 import { BelongingsSheetPet } from "./BelongingsSheetPet"
@@ -30,7 +31,7 @@ interface Props {
   purse: Maybe<Record<Purse>>
   totalPrice: Maybe<number>
   totalWeight: Maybe<number>
-  useParchment: boolean
+  background: SheetBackground
 }
 
 export const BelongingsSheet: React.FC<Props> = props => {
@@ -42,7 +43,7 @@ export const BelongingsSheet: React.FC<Props> = props => {
     totalPrice: maybeTotalPrice,
     totalWeight: maybeTotalWeight,
     pet,
-    useParchment,
+    background,
   } = props
 
   const strength =
@@ -74,7 +75,7 @@ export const BelongingsSheet: React.FC<Props> = props => {
         title={translate (staticData) ("sheets.belongingssheet.title")}
         attributes={attributes}
         staticData={staticData}
-        useParchment={useParchment}
+        background={background}
         >
         <div className="upper">
           <TextBox
