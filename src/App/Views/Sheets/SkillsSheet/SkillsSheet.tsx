@@ -12,6 +12,7 @@ import { StaticDataRecord } from "../../../Models/Wiki/WikiModel"
 import { translate } from "../../../Utilities/I18n"
 import { AttributeMods } from "../AttributeMods"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { SheetWrapper } from "../SheetWrapper"
 import { SkillsSheetLanguages } from "./SkillsSheetLanguages"
 import { SkillsSheetQualityLevels } from "./SkillsSheetQualityLevels"
@@ -29,7 +30,7 @@ interface Props {
   scriptsWikiEntry: Maybe<Record<SpecialAbility>>
   skillsByGroup: Maybe<OrderedMap<number, List<Record<SkillCombined>>>>
   skillGroupPages: OrderedMap<number, Pair<number, number>>
-  useParchment: boolean
+  background: SheetBackground
 }
 
 export const SkillsSheet: React.FC<Props> = props => {
@@ -43,7 +44,7 @@ export const SkillsSheet: React.FC<Props> = props => {
     scriptsWikiEntry,
     skillsByGroup,
     skillGroupPages,
-    useParchment,
+    background,
   } = props
 
   return (
@@ -53,7 +54,7 @@ export const SkillsSheet: React.FC<Props> = props => {
         title={translate (staticData) ("sheets.gamestatssheet.title")}
         attributes={attributes}
         staticData={staticData}
-        useParchment={useParchment}
+        background={background}
         >
         <SkillsSheetSkills
           attributes={attributes}

@@ -19,6 +19,7 @@ import { translate } from "../../../Utilities/I18n"
 import { pipe, pipe_ } from "../../../Utilities/pipe"
 import { AttributeMods } from "../AttributeMods"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { HeaderValue } from "../SheetHeader"
 import { SheetWrapper } from "../SheetWrapper"
 import { SpellsSheetCantrips } from "./SpellsSheetCantrips"
@@ -38,7 +39,7 @@ export interface SpellsSheetProps {
   properties: Maybe<string>
   spells: Maybe<List<Record<SpellWithRequirements>>>
   switchAttributeValueVisibility (): void
-  useParchment: boolean
+  background: SheetBackground
 }
 
 export function SpellsSheet (props: SpellsSheetProps) {
@@ -53,7 +54,7 @@ export function SpellsSheet (props: SpellsSheetProps) {
     magicalTradition,
     properties,
     spells,
-    useParchment,
+    background,
   } = props
 
   const addHeader = List<Record<HeaderValue>> (
@@ -85,7 +86,7 @@ export function SpellsSheet (props: SpellsSheetProps) {
         addHeaderInfo={addHeader}
         staticData={staticData}
         attributes={attributes}
-        useParchment={useParchment}
+        background={background}
         >
         <div className="all">
           <SpellsSheetSpells

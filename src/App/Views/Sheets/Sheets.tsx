@@ -1,3 +1,4 @@
+import { useState } from "react"
 import * as React from "react"
 import { DerivedCharacteristicId } from "../../../../app/Database/Schema/DerivedCharacteristics/DerivedCharacteristics.l10n"
 import { equals } from "../../../Data/Eq"
@@ -66,6 +67,11 @@ import { CombatSheetZones } from "./CombatSheet/CombatSheetZones"
 import { RulesSheet } from "./RulesSheet/RulesSheet"
 import { LiturgicalChantsSheet } from "./LiturgicalChantsSheet/LiturgicalChantsSheet"
 import { MainSheet } from "./MainSheet/MainSheet"
+import {
+  getImageElement,
+  SheetBackground,
+  SheetBackgroundDropdown,
+} from "./SheetBackgroundDropdown"
 import { SkillsSheet } from "./SkillsSheet/SkillsSheet"
 import { SpellsSheet } from "./SpellsSheet/SpellsSheet"
 
@@ -224,7 +230,13 @@ export const Sheets: React.FC<Props> = props => {
   const nArmorZones = armorZones.map (xs => xs.length).sum ()
   const nArmors = Maybe.sum (fmapF (armors) (xs => xs.length))
 
+  const [ background, setBackground ] = useState<SheetBackground> ({
+    dropdownValue: "",
+    getElement: getImageElement (""),
+  })
+
   const customRules = getCustomRules (
+    showAllRules,
     advantagesActive,
     disadvantagesActive,
     generalsaActive,
@@ -256,12 +268,10 @@ export const Sheets: React.FC<Props> = props => {
             {translate (staticData) ("sheets.maptool.download")}
           </a>
         </p>
-        <Checkbox
-          checked={useParchment}
-          onClick={switchUseParchment}
-          >
-          {translate (staticData) ("sheets.useparchment")}
-        </Checkbox>
+        <SheetBackgroundDropdown
+          value={background}
+          setValue={setBackground}
+          />
         <Checkbox
           checked={checkAttributeValueVisibility}
           onClick={switchAttributeValueVisibility}
@@ -326,7 +336,7 @@ export const Sheets: React.FC<Props> = props => {
           profile={profile}
           race={race}
           sex={sex}
-          useParchment={useParchment}
+          background={background}
           />
         <SkillsSheet
           attributes={attributes}
@@ -338,7 +348,7 @@ export const Sheets: React.FC<Props> = props => {
           scriptsWikiEntry={scriptsWikiEntry}
           skillsByGroup={skillsByGroup}
           skillGroupPages={skillGroupPages}
-          useParchment={useParchment}
+          background={background}
           />
         {
           (nArmorZones === 0 || nArmors > 0)
@@ -355,7 +365,7 @@ export const Sheets: React.FC<Props> = props => {
               shieldsAndParryingWeapons={shieldsAndParryingWeapons}
               conditions={conditions}
               states={states}
-              useParchment={useParchment}
+              background={background}
               />
               )
           : null
@@ -375,7 +385,7 @@ export const Sheets: React.FC<Props> = props => {
               shieldsAndParryingWeapons={shieldsAndParryingWeapons}
               conditions={conditions}
               states={states}
-              useParchment={useParchment}
+              background={background}
               />
           )
           : null
@@ -388,7 +398,7 @@ export const Sheets: React.FC<Props> = props => {
           purse={purse}
           totalPrice={totalPrice}
           totalWeight={totalWeight}
-          useParchment={useParchment}
+          background={background}
           />
         {pipe_ (
           maybeArcaneEnergy,
@@ -406,7 +416,7 @@ export const Sheets: React.FC<Props> = props => {
                          properties={properties}
                          spells={spells}
                          switchAttributeValueVisibility={switchAttributeValueVisibility}
-                         useParchment={useParchment}
+                         background={background}
                          />
                      ))
         )}
@@ -425,7 +435,7 @@ export const Sheets: React.FC<Props> = props => {
                          derivedCharacteristics={derivedCharacteristics}
                          liturgicalChants={liturgicalChants}
                          staticData={staticData}
-                         useParchment={useParchment}
+                         background={background}
                          />
                      ))
         )}
@@ -435,7 +445,7 @@ export const Sheets: React.FC<Props> = props => {
           <RulesSheet
             attributes={attributes}
             staticData={staticData}
-            useParchment={useParchment}
+            background={background}
             rules={customRules}
             />
           )

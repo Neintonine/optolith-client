@@ -20,6 +20,7 @@ import { translate } from "../../../Utilities/I18n"
 import { toNewMaybe } from "../../../Utilities/Maybe"
 import { TextBox } from "../../Universal/TextBox"
 import { Sheet } from "../Sheet"
+import { SheetBackground } from "../SheetBackgroundDropdown"
 import { SheetWrapper } from "../SheetWrapper"
 import { MainSheetAttributes } from "./MainSheetAttributes"
 import { MainSheetPersonalData } from "./MainSheetPersonalData"
@@ -41,7 +42,7 @@ interface Props {
   profile: Record<PersonalData>
   race: Maybe<Record<Race>>
   sex: Maybe<Sex>
-  useParchment: boolean
+  background: SheetBackground
 }
 
 export const MainSheet: React.FC<Props> = props => {
@@ -62,7 +63,7 @@ export const MainSheet: React.FC<Props> = props => {
     staticData,
     race,
     sex,
-    useParchment,
+    background,
   } = props
 
   return (
@@ -72,7 +73,7 @@ export const MainSheet: React.FC<Props> = props => {
         title={translate (staticData) ("sheets.mainsheet.title")}
         attributes={attributes}
         staticData={staticData}
-        useParchment={useParchment}
+        background={background}
         >
         <MainSheetPersonalData
           ap={ap}
