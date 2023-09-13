@@ -180,9 +180,7 @@ export const Sheets: React.FC<Props> = props => {
     skillsByGroup,
     skillGroupPages,
     switchAttributeValueVisibility,
-    switchUseParchment,
     setSheetZoomFactor,
-    useParchment,
     zoomFactor,
 
     armors,
@@ -230,6 +228,7 @@ export const Sheets: React.FC<Props> = props => {
   const nArmorZones = armorZones.map (xs => xs.length).sum ()
   const nArmors = Maybe.sum (fmapF (armors) (xs => xs.length))
 
+  const [ showAllRules, setShowAllRules ] = useState<boolean> (false)
   const [ background, setBackground ] = useState<SheetBackground> ({
     dropdownValue: "",
     getElement: getImageElement (""),
@@ -284,6 +283,13 @@ export const Sheets: React.FC<Props> = props => {
           disabled={!hasRules}
           >
           {translate (staticData) ("sheets.usecustomrules")}
+        </Checkbox>
+        <Checkbox
+          checked={showAllRules}
+          onClick={() => setShowAllRules (!showAllRules)}
+          disabled={!displayRulePage}
+          >
+          Display all rules
         </Checkbox>
         <Dropdown
           label={translate (staticData) ("sheets.zoomfactor")}
