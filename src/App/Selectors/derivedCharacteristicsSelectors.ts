@@ -456,6 +456,7 @@ export interface RuleContainer {
 }
 
 export const getCustomRules = (
+  showAllRules: boolean,
   advantagesActive: Maybe<List<Record<ActiveActivatable<Advantage>>>>,
   disadvantagesActive: Maybe<List<Record<ActiveActivatable<Disadvantage>>>>,
   generalsaActive: Maybe<List<Record<ActiveActivatable<SpecialAbility>>>>,
@@ -473,45 +474,88 @@ export const getCustomRules = (
       | List<Record<ActiveActivatable<SpecialAbility>>>,
     target: RuleDictionary
   ) => {
-    for (const activatable of list) {
-      const { heroEntry } = activatable.values
+    const addCustomToList = (
+      activeObject: Record<ActiveObject>,
+      target: RuleDictionary
+    ) => {
+      if (!activeObject.values.sid2) {
+        return
+      }
 
-      if (!isCustomActivatableId (heroEntry.values.id)) {
+      if (
+        isNothing (activeObject.values.sid)
+        || isNothing (activeObject.values.sid2)
+      ) {
+        return
+      }
+
+      if (activeObject.values.sid.value in target) {
+        return
+      }
+
+      target[activeObject.values.sid.value.toString ()] = activeObject.values.sid2.value.toString ()
+      customRules.total++
+    }
+
+    const addWikiToList = (
+      wikiEntry: Record<Advantage> |
+        Record<Disadvantage> |
+        Record<SpecialAbility>,
+      target: RuleDictionary
+    ) => {
+      const { name, rules } = wikiEntry.values
+
+      function getRule (): string|null {
+        if (typeof rules === "string" || rules instanceof String) {
+          return rules as string
+        }
+
+        if (isNothing (rules)) {
+          return null
+        }
+
+        return rules.value
+      }
+
+      const rule = getRule ()
+
+      if (rule === null) {
+        return
+      }
+
+      target[name] = rule
+      customRules.total++
+    }
+
+    for (const activatable of list) {
+      const { heroEntry, wikiEntry } = activatable.values
+
+      if (isCustomActivatableId (heroEntry.values.id)) {
+        for (const activeObject of heroEntry.values.active) {
+          addCustomToList (activeObject, target)
+        }
+
         continue
       }
 
-      for (const activeObject of heroEntry.values.active) {
-        if (!activeObject.values.sid2) {
-          continue
-        }
-
-        if (
-          isNothing (activeObject.values.sid)
-          || isNothing (activeObject.values.sid2)
-        ) {
-          continue
-        }
-
-        if (activeObject.values.sid.value in target) {
-          continue
-        }
-
-        target[activeObject.values.sid.value.toString ()] = activeObject.values.sid2.value.toString ()
-        customRules.total++
+      if (!showAllRules) {
+        continue
       }
+
+      addWikiToList (wikiEntry, target)
     }
   }
 
-  if (isJust(advantagesActive)) {
+  if (isJust (advantagesActive)) {
     addToCustomRules (advantagesActive.value, customRules.advantages)
   }
-  if (isJust(disadvantagesActive)) {
+  if (isJust (disadvantagesActive)) {
     addToCustomRules (disadvantagesActive.value, customRules.disadvantages)
   }
-  if (isJust(generalsaActive)) {
+  if (isJust (generalsaActive)) {
     addToCustomRules (generalsaActive.value, customRules.specialAbilities)
   }
-  if (isJust(combatSpecialAbilities)) {
+  if (isJust (combatSpecialAbilities)) {
     addToCustomRules (combatSpecialAbilities.value, customRules.specialAbilities)
   }
 
