@@ -26,7 +26,7 @@ export const Sheet: React.FC<SheetProps> = props => {
     background,
   } = props
 
-  const image = background.getElement();
+  const image = background.getElement ()
   const className = image === null ? "sheet" : "sheet paper"
 
   return (

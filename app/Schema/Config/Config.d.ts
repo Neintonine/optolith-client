@@ -22,7 +22,7 @@ export interface RawConfig {
   equipmentGroupVisibilityFilter: number
   sheetCheckAttributeValueVisibility?: boolean
   sheetUseParchment?: boolean
-  sheetShowRules?: boolean
+  sheetShowRules?: number
   sheetZoomFactor?: number
   enableActiveItemHints: boolean
   locale?: string
