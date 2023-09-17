@@ -2,7 +2,7 @@ import {
   SWITCH_SHEET_ATTR_VALUE_VISIBILITY,
   SWITCH_SHEET_USE_PARCHMENT,
   SET_SHEET_ZOOM_FACTOR,
-  SWITCH_SHEET_SHOW_RULES
+  SET_SHEET_SHOW_RULES,
 } from "../Constants/ActionTypes"
 
 export interface SwitchSheetAttributeValueVisibilityAction {
@@ -21,11 +21,17 @@ export const switchUseParchment = (): SwitchSheetUseParchmentAction => ({
   type: SWITCH_SHEET_USE_PARCHMENT,
 })
 
-export interface SwitchSheetShowRules {
-  type: SWITCH_SHEET_SHOW_RULES
+export interface SetSheetShowRules {
+  type: SET_SHEET_SHOW_RULES
+  payload: {
+    value: number
+  }
 }
-export const switchShowRules = (): SwitchSheetShowRules => ({
-  type: SWITCH_SHEET_SHOW_RULES,
+export const setShowRules = (value: number): SetSheetShowRules => ({
+  type: SET_SHEET_SHOW_RULES,
+  payload: {
+    value,
+  },
 })
 
 export interface SetSheetZoomFactor {

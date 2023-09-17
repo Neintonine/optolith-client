@@ -146,7 +146,7 @@ export const parseConfig = async () => {
                               sheetZoomFactor:
                                  validated_data.value.sheetZoomFactor ?? 100,
                                sheetShowRules:
-                                 Maybe(validated_data.value.sheetShowRules),
+                                 Maybe (validated_data.value.sheetShowRules),
                                enableActiveItemHints:
                                  validated_data.value.enableActiveItemHints,
                                locale:

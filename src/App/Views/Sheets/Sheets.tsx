@@ -100,7 +100,7 @@ export interface SheetsStateProps {
   name: Maybe<string>
   professionName: Maybe<string>
   useParchment: boolean
-  showRules: boolean
+  showRules: number
   zoomFactor: number
 
   // profession: Maybe<Record<Profession>>
@@ -144,7 +144,7 @@ export interface SheetsDispatchProps {
   exportAsRptok (): void
   switchAttributeValueVisibility (): void
   switchUseParchment (): void
-  switchShowRules (): void
+  setShowRules (value: number): void
   setSheetZoomFactor (zoomFactor: number): void
 }
 
@@ -214,7 +214,7 @@ export const Sheets: React.FC<Props> = props => {
     blessings,
     liturgicalChants,
     showRules,
-    switchShowRules,
+    setShowRules,
   } = props
 
   const maybeArcaneEnergy =
@@ -228,21 +228,22 @@ export const Sheets: React.FC<Props> = props => {
   const nArmorZones = armorZones.map (xs => xs.length).sum ()
   const nArmors = Maybe.sum (fmapF (armors) (xs => xs.length))
 
-  const [ showAllRules, setShowAllRules ] = useState<boolean> (false)
   const [ background, setBackground ] = useState<SheetBackground> ({
     dropdownValue: "",
     getElement: getImageElement (""),
   })
 
   const customRules = getCustomRules (
-    showAllRules,
+    showRules === 2,
     advantagesActive,
     disadvantagesActive,
     generalsaActive,
     combatSpecialAbilities
   )
   const hasRules = customRules.total > 0
-  const displayRulePage = hasRules && showRules
+  const displayRulePage = hasRules && showRules > 0
+
+  console.log("show rules", showRules)
 
   return (
     <Page id="sheets">
@@ -277,20 +278,26 @@ export const Sheets: React.FC<Props> = props => {
           >
           {translate (staticData) ("sheets.showattributevalues")}
         </Checkbox>
-        <Checkbox
-          checked={showRules}
-          onClick={switchShowRules}
-          disabled={!hasRules}
-          >
-          {translate (staticData) ("sheets.usecustomrules")}
-        </Checkbox>
-        <Checkbox
-          checked={showAllRules}
-          onClick={() => setShowAllRules (!showAllRules)}
-          disabled={!displayRulePage}
-          >
-          Display all rules
-        </Checkbox>
+        <Dropdown
+          label={translate (staticData) ("sheets.rules.label")}
+          value={Just (showRules)}
+          onChangeJust={setShowRules}
+          options={List (
+            DropdownOption ({
+              id: Just (0),
+              name: translate (staticData) ("sheets.rules.none"),
+            }),
+            DropdownOption ({
+              id: Just (1),
+              name: translate (staticData) ("sheets.rules.customrulesonly"),
+            }),
+            DropdownOption ({
+              id: Just (2),
+              name: translate (staticData) ("sheets.rules.allrules"),
+            }),
+          )}
+          fullWidth
+          />
         <Dropdown
           label={translate (staticData) ("sheets.zoomfactor")}
           value={Just (zoomFactor)}
@@ -449,6 +456,7 @@ export const Sheets: React.FC<Props> = props => {
         displayRulePage
         ? (
           <RulesSheet
+            key={`rules_sheet_${showRules}`}
             attributes={attributes}
             staticData={staticData}
             background={background}

@@ -104,8 +104,8 @@ const mapDispatchToProps = (dispatch: ReduxDispatch, ownProps: SheetsOwnProps) =
   switchUseParchment () {
     dispatch (SheetActions.switchUseParchment ())
   },
-  switchShowRules () {
-    dispatch (SheetActions.switchShowRules ())
+  setShowRules (value: number) {
+    dispatch (SheetActions.setShowRules (value))
   },
   setSheetZoomFactor (zoomFactor: number) {
     dispatch (SheetActions.setSheetZoomFactor (zoomFactor))

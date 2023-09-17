@@ -77,7 +77,7 @@
           "type": "boolean"
         },
         "sheetShowRules": {
-          "type": "boolean"
+          "type": "number"
         },
         "sheetZoomFactor": {
           "type": "number"

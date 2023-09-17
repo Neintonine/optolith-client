@@ -17,7 +17,7 @@ import {
   SwitchSheetAttributeValueVisibilityAction,
   SwitchSheetUseParchmentAction,
   SetSheetZoomFactor,
-  SwitchSheetShowRules
+  SetSheetShowRules
 } from "../Actions/SheetActions"
 import { SetSkillsSortOrderAction, SwitchSkillRatingVisibilityAction } from "../Actions/SkillActions"
 import { SetSpecialAbilitiesSortOrderAction } from "../Actions/SpecialAbilitiesActions"
@@ -52,7 +52,7 @@ type Action = ReceiveInitialDataAction
             | SetMeleeItemTemplatesCombatTechniqueFilterAction
             | SetRangedItemTemplatesCombatTechniqueFilterAction
             | SwitchEnableAnimationsAction
-            | SwitchSheetShowRules
+            | SetSheetShowRules
 
 const CA = Config.A
 
@@ -127,7 +127,7 @@ export const uiSettingsReducer =
             sheetUseParchment:
               fromMaybe (false) (CA.sheetUseParchment (config)),
             sheetShowRules:
-              fromMaybe (false) (CA.sheetShowRules (config)),
+              fromMaybe (0) (CA.sheetShowRules (config)),
             sheetZoomFactor:
               CA.sheetZoomFactor (config),
             theme: fromMaybe (Theme.Dark) (CA.theme (config)),
@@ -148,8 +148,8 @@ export const uiSettingsReducer =
         return over (UISettingsStateL.sheetCheckAttributeValueVisibility) (not)
       case ActionTypes.SWITCH_SHEET_USE_PARCHMENT:
           return over (UISettingsStateL.sheetUseParchment) (not)
-      case ActionTypes.SWITCH_SHEET_SHOW_RULES:
-          return over (UISettingsStateL.sheetShowRules) (not)
+      case ActionTypes.SET_SHEET_SHOW_RULES:
+          return set (UISettingsStateL.sheetShowRules) (action.payload.value)
       case ActionTypes.SET_SHEET_ZOOM_FACTOR:
           return set (UISettingsStateL.sheetZoomFactor) (action.payload.zoomFactor)
 
