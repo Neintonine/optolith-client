@@ -126,3 +126,12 @@ ul:not(.list-wrapper) {
 		}
 	}
 }
+.no-offical-release-warning {
+	flex-grow: 1;
+	margin-left: 0.7rem;
+	padding-top: 0.3rem;
+
+	opacity: 0.35;
+
+	font: 14px/22px Alegreya Sans;
+}

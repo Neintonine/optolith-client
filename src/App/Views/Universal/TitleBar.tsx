@@ -86,6 +86,12 @@ export const TitleBar: React.FC<Props> = props => {
 
   return (
     <TitleBarWrapper isFocused={isFocused}>
+      <small
+        className="no-offical-release-warning"
+        >
+        unoffical release: no support provided
+      </small>
+
       <TitleBarButton icon="&#xE903;" onClick={minimize} className="minimize" />
       {isMaximized
         ? null
