@@ -1,7 +1,7 @@
 {
   "name": "optolith",
   "productName": "Optolith",
-  "version": "1.5.2-alpha.4-ied-v1",
+  "version": "1.6.0",
   "description": "A generator for heroes for the P&P-RPG 'The Dark Eye'.",
   "author": {
     "name": "Lukas Obermann",
@@ -95,7 +95,7 @@
     "test": "jest",
     "circ": "madge -c ./src",
     "release:main": "standard-version --skip.commit --skip.tag",
-    "release:pre": "standard-version --prerelease=alpha"
+    "release:pre": "standard-version"
   },
   "repository": "github:elyukai/optolith-client",
   "husky": {
