@@ -21,6 +21,7 @@ interface InactiveListProps {
   selectedForInfo: Maybe<string>
   addToList (args: Record<ActivatableActivationOptions>): void
   selectForInfo (id: string): void
+  displayInvalid: boolean
 }
 
 export const InactiveList: React.FC<InactiveListProps> = props => {
@@ -32,6 +33,7 @@ export const InactiveList: React.FC<InactiveListProps> = props => {
     selectedForInfo,
     addToList,
     selectForInfo,
+    displayInvalid,
   } = props
 
   return (
@@ -44,6 +46,7 @@ export const InactiveList: React.FC<InactiveListProps> = props => {
       addToList={addToList}
       selectForInfo={selectForInfo}
       hideGroup
+      displayInvalid={displayInvalid}
       />
   )
 }

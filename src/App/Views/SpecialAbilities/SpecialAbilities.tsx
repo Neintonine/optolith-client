@@ -14,6 +14,7 @@ import { StaticDataRecord } from "../../Models/Wiki/WikiModel"
 import { translate } from "../../Utilities/I18n"
 import { ActivatableAddList } from "../Activatable/ActivatableAddList"
 import { ActivatableRemoveList } from "../Activatable/ActivatableRemoveList"
+import { EnableInvalidCheckbox } from "../Activatable/EnableInvalidCheckbox"
 import { WikiInfoSelector } from "../InlineWiki/WikiInfo"
 import { BorderButton } from "../Universal/BorderButton"
 import { Checkbox } from "../Universal/Checkbox"
@@ -79,6 +80,7 @@ export const SpecialAbilities: React.FC<Props> = props => {
   const [ isSlideinOpen, setIsSlideinOpen ] = React.useState (false)
   const [ currentWikiSelector, setCurrentWikiSelector ] = React.useState<Maybe<WikiInfoSelector>> (Nothing)
   const [ currentSlideinId, setCurrentSlideinId ] = React.useState<Maybe<string>> (Nothing)
+  const [ displayInvalid, setDisplayInvalid ] = React.useState<boolean> (false)
 
   const handleShowSlidein = React.useCallback (
     () => setIsSlideinOpen (true),
@@ -104,6 +106,18 @@ export const SpecialAbilities: React.FC<Props> = props => {
     [ setCurrentSlideinId ]
   )
 
+  const invertDisplayInvalid = React.useCallback (
+() => {
+      const target = !displayInvalid
+      if (target && !enableActiveItemHints) {
+        switchActiveItemHints ()
+      }
+
+      setDisplayInvalid (target)
+    },
+    [ setDisplayInvalid, switchActiveItemHints, displayInvalid, enableActiveItemHints ]
+  )
+
   return (
     <Page id="specialabilities">
       <Slidein isOpen={isSlideinOpen} close={handleHideSlidein}>
@@ -123,9 +137,15 @@ export const SpecialAbilities: React.FC<Props> = props => {
           <Checkbox
             checked={enableActiveItemHints}
             onClick={switchActiveItemHints}
+            disabled={displayInvalid}
             >
             {translate (staticData) ("general.filters.showactivatedentries")}
           </Checkbox>
+          <EnableInvalidCheckbox
+            staticData={staticData}
+            checked={displayInvalid}
+            onClick={invertDisplayInvalid}
+            />
         </Options>
         <MainContent>
           <ListHeader>
@@ -150,6 +170,7 @@ export const SpecialAbilities: React.FC<Props> = props => {
             staticData={staticData}
             selectForInfo={handleSlideinInfo}
             selectedForInfo={currentSlideinId}
+            displayInvalid={displayInvalid}
             />
         </MainContent>
         <WikiInfoContainer currentId={currentSlideinId} />

@@ -37,6 +37,7 @@ export interface ActivatableAddListItemOwnProps {
   selectedForInfo: Maybe<string>
   addToList (args: Record<ActivatableActivationOptions>): void
   selectForInfo (id: string): void
+  displayInvalid: boolean
 }
 
 export interface ActivatableAddListItemStateProps {
@@ -77,6 +78,7 @@ export const ActivatableAddListItem: React.FC<ActivatableAddListItemProps> = pro
     staticData,
     addToList,
     isEditingAllowed,
+    displayInvalid,
   } = props
 
   const id = IAA.id (item)
@@ -262,6 +264,67 @@ export const ActivatableAddListItem: React.FC<ActivatableAddListItemProps> = pro
       () => selectForInfo (id),
       [ selectForInfo, id ]
     )
+
+  const isValid = IAA.isValid (item)
+  if (!isValid) {
+    if (!displayInvalid) {
+      return null
+    }
+
+    return (
+      <ListItem
+        important={false}
+        recommended={false}
+        unrecommended={false}
+        active={Maybe.elem (IAA.id (item)) (selectedForInfo)}
+        notValid
+        >
+        <ListItemLeft>
+          <ListItemName name={IAA.name (item)} onClick={handleSelectForInfo} />
+        </ListItemLeft>
+        <ListItemSeparator />
+        {orN (hideGroup)
+          ? null
+          : (
+            <ListItemGroup
+              text={pipe_ (
+                staticData,
+                StaticData.A.specialAbilityGroups,
+                lookup (pipe_ (item, IAA.wikiEntry, SpecialAbility.AL.gr)),
+                maybe ("") (NumIdName.A.name)
+              )}
+              />
+          )}
+        <ListItemValues>
+          <div
+            className={classListMaybe (List (
+              Just ("cost"),
+              guardReplace (isCustomCostAvailable) ("value-btn"),
+              guardReplace (isJust (mcustom_cost)) ("custom-cost"),
+              Just ("disabled")
+            ))}
+            onClick={handleShowCustomCostDialog}
+            >
+            {renderMaybeWith ((x: number | string) => IAA.isAutomatic (item) ? `(${x})` : x)
+            (PABSA.currentCost (snd (finalProps)))}
+          </div>
+        </ListItemValues>
+        <ListItemButtons>
+          <IconButton
+            icon="&#xE916;"
+            disabled
+            onClick={handleAddToList}
+            flat
+            />
+          <IconButton
+            icon="&#xE912;"
+            onClick={handleSelectForInfo}
+            flat
+            />
+        </ListItemButtons>
+      </ListItem>
+    )
+  }
 
   return (
     <ListItem

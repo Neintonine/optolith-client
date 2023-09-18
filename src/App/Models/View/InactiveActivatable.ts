@@ -19,6 +19,7 @@ export interface InactiveActivatable<T extends RecordI<Activatable> = RecordI<Ac
   wikiEntry: Record<T>
   customCostDisabled: Maybe<boolean>
   isAutomatic: boolean
+  isValid: boolean
 }
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -35,6 +36,7 @@ export const InactiveActivatable =
                 wikiEntry: Advantage.default,
                 customCostDisabled: Nothing,
                 isAutomatic: false,
+                isValid: false,
               })
 
 export const InactiveActivatableA_ = {

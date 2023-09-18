@@ -13,6 +13,7 @@ import { AdventurePointsCategories } from "../../Models/View/AdventurePointsCate
 import { InactiveActivatable } from "../../Models/View/InactiveActivatable"
 import { StaticDataRecord } from "../../Models/Wiki/WikiModel"
 import { translate } from "../../Utilities/I18n"
+import { EnableInvalidCheckbox } from "../Activatable/EnableInvalidCheckbox"
 import { WikiInfoSelector } from "../InlineWiki/WikiInfo"
 import { BorderButton } from "../Universal/BorderButton"
 import { Checkbox } from "../Universal/Checkbox"
@@ -79,6 +80,7 @@ export const AdvantagesDisadvantages: React.FC<AdvantagesDisadvantagesProps> = p
   const [ showAddSlidein, setShowAddSlidein ] = React.useState (false)
   const [ currentWikiSelector, setCurrentWikiSelector ] = React.useState<Maybe<WikiInfoSelector>> (Nothing)
   const [ currentSlideinId, setCurrentSlideinId ] = React.useState<Maybe<string>> (Nothing)
+  const [ displayInvalid, setDisplayInvalid ] = React.useState<boolean> (false)
 
   const handleShowSlidein = React.useCallback (
     () => setShowAddSlidein (true),
@@ -106,6 +108,18 @@ export const AdvantagesDisadvantages: React.FC<AdvantagesDisadvantagesProps> = p
     [ setCurrentSlideinId ]
   )
 
+  const invertDisplayInvalid = React.useCallback (
+    () => {
+      const target = !displayInvalid
+      if (target && !enableActiveItemHints) {
+        switchActiveItemHints ()
+      }
+
+      setDisplayInvalid (target)
+    },
+    [ setDisplayInvalid, switchActiveItemHints, displayInvalid, enableActiveItemHints ]
+  )
+
   return (
     <Page id={orN (isAdvantages) ? "advantages" : "disadvantages"}>
       <Slidein isOpen={showAddSlidein} close={handleHideSlidein}>
@@ -128,9 +142,15 @@ export const AdvantagesDisadvantages: React.FC<AdvantagesDisadvantagesProps> = p
           <Checkbox
             checked={enableActiveItemHints}
             onClick={switchActiveItemHints}
+            disabled={displayInvalid}
             >
             {translate (staticData) ("general.filters.showactivatedentries")}
           </Checkbox>
+          <EnableInvalidCheckbox
+            staticData={staticData}
+            checked={displayInvalid}
+            onClick={invertDisplayInvalid}
+            />
           {fromMaybe (null as React.ReactNode)
                      (fmapF (m_ap)
                             (ap => (
@@ -166,6 +186,7 @@ export const AdvantagesDisadvantages: React.FC<AdvantagesDisadvantagesProps> = p
             addToList={addToList}
             selectForInfo={handleShowSlideinInfo}
             selectedForInfo={currentSlideinId}
+            displayInvalid={displayInvalid}
             />
         </MainContent>
         <WikiInfoContainer currentId={currentSlideinId} />
