@@ -31,6 +31,7 @@ export interface ActivatableAddListProps {
   selectedForInfo: Maybe<string>
   addToList (args: Record<ActivatableActivationOptions>): void
   selectForInfo (id: string): void
+  displayInvalid?: boolean
 }
 
 const AAA = ActiveActivatable.A
@@ -49,6 +50,7 @@ export function ActivatableAddList (props: ActivatableAddListProps) {
     selectedForInfo,
     addToList,
     selectForInfo,
+    displayInvalid
   } = props
 
   if (all (fnull) (minactives)) {
@@ -91,6 +93,7 @@ export function ActivatableAddList (props: ActivatableAddListProps) {
                 selectedForInfo={selectedForInfo}
                 addToList={addToList}
                 selectForInfo={selectForInfo}
+                displayInvalid={displayInvalid ?? false}
                 />
             )
           }),

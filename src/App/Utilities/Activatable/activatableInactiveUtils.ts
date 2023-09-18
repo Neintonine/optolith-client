@@ -941,6 +941,7 @@ export const getInactiveView =
                                                        (sortRecordsByName (staticData)),
                                   isAutomatic: List.elem (AAL.id (wiki_entry))
                                                          (automatic_advantages),
+                                  isValid: true,
                                 })),
         ap (modifyOtherOptions (staticData)
                                (hero)
@@ -951,5 +952,31 @@ export const getInactiveView =
       )
     }
 
-    return Nothing
+    return pipe_ (
+        wiki_entry,
+        AAL.select,
+          modifySelectOptions (staticData)
+          (hero)
+          (hero_magical_traditions)
+          (wiki_entry)
+          (mhero_entry),
+        ensure (maybe (true) (notNull)),
+        fmap (() => InactiveActivatable ({
+          id: current_id,
+          name: SpAL.name (wiki_entry),
+          cost: AAL.cost (wiki_entry),
+          maxLevel: Nothing,
+          heroEntry: mhero_entry,
+          wikiEntry: wiki_entry as Record<RecordI<Activatable>>,
+          selectOptions: Nothing,
+          isAutomatic: false,
+          isValid: false,
+        })),
+        ap (modifyOtherOptions (staticData)
+          (hero)
+          (adventure_points)
+          (wiki_entry)
+          (mhero_entry)),
+        bindF (ensure (pipe (IAA.maxLevel, maybe (true) (notEquals (0)))))
+    )
   }

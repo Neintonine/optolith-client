@@ -13,6 +13,7 @@ interface Props {
   noIncrease?: boolean
   recommended?: boolean
   unrecommended?: boolean
+  notValid?: boolean
   onClick? (): void
 }
 
@@ -27,6 +28,7 @@ export const ListItem: React.FC<Props> = props => {
     noIncrease,
     recommended,
     unrecommended,
+    notValid,
     onClick,
   } = props
 
@@ -41,7 +43,8 @@ export const ListItem: React.FC<Props> = props => {
           guardReplace (orN (unrecommended)) ("untyp"),
           guardReplace (orN (noIncrease)) ("no-increase"),
           guardReplace (orN (insertTopMargin)) ("top-margin"),
-          guardReplace (orN (disabled)) ("disabled")
+          guardReplace (orN (disabled)) ("disabled"),
+          guardReplace (orN (notValid)) ("not-valid")
         ))
       }
       onClick={onClick}

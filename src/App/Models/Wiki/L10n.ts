@@ -112,6 +112,8 @@ export const L10n =
                 "general.filters.sort.bycost": "",
                 "general.filters.sort.byweight": "",
                 "general.filters.showactivatedentries": "",
+                "general.filters.showinvalidentries": "",
+                "general.filters.showinvalidentries.warning": "",
 
                 "general.dialogs.savebtn": "Save",
                 "general.dialogs.donebtn": "Done",

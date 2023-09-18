@@ -4,6 +4,7 @@ ul.list-wrapper {
   padding: 0 0 1px 0;
   margin: 0;
   list-style: none;
+  font: 14px/22px Alegreya Sans;
 
   li {
     flex: none;
@@ -528,6 +529,19 @@ ul.list-wrapper {
         .placeholder-text {
           width: 3px;
         }
+      }
+    }
+    &.not-valid {
+      --not-valid-color: var(--separator-color);
+
+      .title {
+        color: var(--not-valid-color);
+      }
+      .group {
+        color: var(--not-valid-color);
+      }
+      .cost {
+        color: var(--not-valid-color);
       }
     }
   }
