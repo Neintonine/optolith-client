@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0-ied-alpha.0](https://github.com/elyukai/optolith-client/compare/v1.5.2-alpha.4...v1.6.0-ied-alpha.0) (2023-09-18)
+
+
+### Features
+
+* add option to add and save a custom rule to a custom activatable ([ed97c55](https://github.com/elyukai/optolith-client/commit/ed97c55c4e6b7595568ff314d56ac81a1134b50f))
+* **bugfix/rules-incomplete:** fixed missing rules in pdf ([ff6ae8a](https://github.com/elyukai/optolith-client/commit/ff6ae8aa56736759ad2b1aa50b2b4f260727e9cb))
+* **custom-rule:** add custom rule-page to PDF ([8d02399](https://github.com/elyukai/optolith-client/commit/8d023992385f4ac24261907c31cf08ecbced8347))
+* **custom-rule:** add translation interfaces ([3e2f55b](https://github.com/elyukai/optolith-client/commit/3e2f55b9a2886cc9217cd69fb54b6500b31fe495))
+* **custom-rule:** fixes the bug, where all elements where selected individually ([f0d46a9](https://github.com/elyukai/optolith-client/commit/f0d46a9d737ec6f0cd01c7bf8aa6842bfa9f4462))
+* **custom-rules:** adds method to add normal rules to the pdf ([83d41b8](https://github.com/elyukai/optolith-client/commit/83d41b86bcdbc9cf9c049de9ae6ff8dda7859793))
+* **custom-rules:** moved the inline textarea to a dialog to enter the rule ([c3f7f4f](https://github.com/elyukai/optolith-client/commit/c3f7f4faa8a68dd2adef98d40b9b64abfc54060a))
+* **feature/list-all-activables:** adds a feature to display all activatables ([8f715dc](https://github.com/elyukai/optolith-client/commit/8f715dc106a4cfcedde178993de654565ca020c7))
+* **list-all-rules:** replaces checkboxes with dropdown ([c17bccb](https://github.com/elyukai/optolith-client/commit/c17bccb5d085df721a67b7e64b1b6ba4c1250956))
+* **more-background:** adds multiple backgrounds ([7e8be01](https://github.com/elyukai/optolith-client/commit/7e8be012f3093bf940861f165cb036e174a2dd0d))
+* **unoffical-release-note:** adds a little note, that the release is unoffical ([2a83eaf](https://github.com/elyukai/optolith-client/commit/2a83eafce10025be4faf8ecfffe7e9a0ce3925a1))
+
 ### [1.5.2-alpha.4](https://github.com/elyukai/optolith-client/compare/v1.5.2-alpha.3...v1.5.2-alpha.4) (2022-07-22)
 
 
