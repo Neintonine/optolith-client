@@ -237,8 +237,12 @@ export const Sheets: React.FC<Props> = props => {
     showRules === 2,
     advantagesActive,
     disadvantagesActive,
-    generalsaActive,
-    combatSpecialAbilities
+    [
+      generalsaActive,
+      combatSpecialAbilities,
+      magicalSpecialAbilities,
+      blessedSpecialAbilities,
+    ]
   )
   const hasRules = customRules.total > 0
   const displayRulePage = hasRules && showRules > 0

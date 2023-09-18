@@ -459,8 +459,7 @@ export const getCustomRules = (
   showAllRules: boolean,
   advantagesActive: Maybe<List<Record<ActiveActivatable<Advantage>>>>,
   disadvantagesActive: Maybe<List<Record<ActiveActivatable<Disadvantage>>>>,
-  generalsaActive: Maybe<List<Record<ActiveActivatable<SpecialAbility>>>>,
-  combatSpecialAbilities: Maybe<List<Record<ActiveActivatable<SpecialAbility>>>>
+  specialabilities: Maybe<List<Record<ActiveActivatable<SpecialAbility>>>>[]
 ): RuleContainer => {
   const customRules: RuleContainer = {
     total: 0,
@@ -503,18 +502,27 @@ export const getCustomRules = (
         Record<SpecialAbility>,
       target: RuleDictionary
     ) => {
-      const { name, rules } = wikiEntry.values
+      // @ts-ignore
+      const { name, rules, effect } = wikiEntry.values
 
       function getRule (): string|null {
         if (typeof rules === "string" || rules instanceof String) {
           return rules as string
         }
 
-        if (isNothing (rules)) {
+        if (!isNothing (rules)) {
+          return rules.value
+        }
+
+        if (effect === undefined || effect === null) {
           return null
         }
 
-        return rules.value
+        if (!isNothing (effect)) {
+          return effect.value
+        }
+
+        return null
       }
 
       const rule = getRule ()
@@ -552,11 +560,11 @@ export const getCustomRules = (
   if (isJust (disadvantagesActive)) {
     addToCustomRules (disadvantagesActive.value, customRules.disadvantages)
   }
-  if (isJust (generalsaActive)) {
-    addToCustomRules (generalsaActive.value, customRules.specialAbilities)
-  }
-  if (isJust (combatSpecialAbilities)) {
-    addToCustomRules (combatSpecialAbilities.value, customRules.specialAbilities)
+
+  for (const specialability of specialabilities) {
+    if (isJust (specialability)) {
+      addToCustomRules (specialability.value, customRules.specialAbilities)
+    }
   }
 
   return customRules
