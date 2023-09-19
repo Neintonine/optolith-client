@@ -14,7 +14,7 @@ remote.initialize ()
 
 app.setAppUserModelId ("lukasobermann.optolith")
 
-const isUpdaterEnabled = autoUpdater.isUpdaterActive ()
+const isUpdaterEnabled = false
 
 ipcMain.on (IPCChannels.IsUpdaterEnabled, event => {
   event.returnValue = isUpdaterEnabled
