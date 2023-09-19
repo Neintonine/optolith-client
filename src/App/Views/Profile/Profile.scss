@@ -10,35 +10,8 @@
       width: 150px;
       height: 150px;
 
-      &:hover {
-        cursor: pointer;
 
-        .avatar {
-          box-shadow: 0 0 0 71px var(--separator-color-transparent) inset;
 
-          &::after {
-            display: block;
-          }
-        }
-      }
-
-      &:not(.no-avatar) .avatar::after {
-        top: 43px;
-        left: 43px;
-      }
-    }
-
-    .avatar::after {
-      position: absolute;
-      top: 39px;
-      left: 39px;
-      display: none;
-      content: "\E91a";
-      width: 64px;
-      height: 64px;
-      font: 64px/64px TDE Heroes;
-      color: var(--headings-color);
-      text-align: center;
     }
 
     .text-wrapper {

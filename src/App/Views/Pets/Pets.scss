@@ -8,48 +8,9 @@
 		width: var(--size);
 
 		.avatar-wrapper {
-      flex: 1 0 auto;
-      width: var(--size);
-      height: var(--size);
-
-			&:hover {
-				cursor: pointer;
-
-				.avatar {
-					box-shadow: 0 0 0 71px transparentize(black, .15) inset;
-
-					&::after {
-						display: block;
-					}
-				}
-			}
-
-			&:not(.no-avatar) {
-				padding: 4px;
-				background: #785a28;
-
-				.avatar::after {
-					top: 43px;
-					left: 43px;
-				}
-			}
-
-			&.no-avatar {
-				border-width: 4px;
-			}
-		}
-
-		.avatar::after {
-			position: absolute;
-			top: 39px;
-			left: 39px;
-			display: none;
-      content: "\E91a";
-      width: 64px;
-      height: 64px;
-			font: 64px/64px TDE Heroes;
-			color: var(--headings-color);
-			text-align: center;
+			flex: 1 0 auto;
+			width: var(--size);
+			height: var(--size);
 		}
 
 		.btn {

@@ -134,7 +134,7 @@ export function PetEditor (props: PetEditorProps) {
       <Slidein isOpen close={closePetEditor}>
         <div className="pet-edit">
           <div className="left">
-            <AvatarWrapper src={EPA.avatar (pet)} onClick={openEditPetAvatar} />
+            <AvatarWrapper src={EPA.avatar (pet)} onClick={openEditPetAvatar} editable />
             <BorderButton
               className="delete-avatar"
               label={translate (staticData) ("pets.dialogs.addedit.deleteavatarbtn")}

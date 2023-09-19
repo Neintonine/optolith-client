@@ -3,9 +3,56 @@
 	border-radius: 50%;
 	position: relative;
 
+	&.editable {
+		&:hover {
+			cursor: pointer;
+
+			.avatar::after {
+				backdrop-filter: blur(5px);
+				background-color: var(--background-color-transparent02);
+			}
+
+			&::before {
+				opacity: .8;
+			}
+		}
+
+		.avatar::after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			border-radius: 50%;
+			transition: all .2s ease;
+		}
+
+		&:not(.no-avatar)::before {
+			color: #efefef;
+		}
+
+		&::before {
+			position: absolute;
+			top: 39px;
+			left: 39px;
+			content: "\E91a";
+			width: 64px;
+			height: 64px;
+			font: 64px/64px TDE Heroes;
+			background-color: transparent;
+			filter: drop-shadow(0 0 0.75rem var(--common-bright-color));
+			color: #4a4a4a;
+			text-align: center;
+			z-index: 2;
+			opacity: 0;
+			transition: opacity .2s ease;
+		}
+	}
+
+
 	> .avatar {
-    width: 100%;
-    height: 100%;
+		width: 100%;
+		height: 100%;
 	}
 
 	&::after {
@@ -30,4 +77,5 @@
 			background: none;
 		}
 	}
+
 }
