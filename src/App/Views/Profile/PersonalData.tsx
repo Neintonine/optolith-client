@@ -232,7 +232,7 @@ export const PersonalDataView: React.FC<PersonalDataProps> = props => {
     <Page id="personal-data">
       <Scroll className="text">
         <div className="title-wrapper">
-          <AvatarWrapper src={avatar} onClick={openEditCharacterAvatar} />
+          <AvatarWrapper src={avatar} onClick={openEditCharacterAvatar} editable />
           <div className="text-wrapper">
             {nameElement}
             {

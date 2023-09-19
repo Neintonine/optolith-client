@@ -11,17 +11,20 @@ interface Props {
   img?: boolean
   src: Maybe<string>
   onClick?: () => void
+  editable?: boolean
 }
 
 export const AvatarWrapper: React.FC<Props> = props => {
-  const { children, img, onClick, src: msrc } = props
+  const { children, img, onClick, src: msrc, editable } = props
   let { className } = props
 
   const validPath = isURLValidM (msrc)
 
+
   className = classListMaybe (List (
     Just ("avatar-wrapper"),
-    guardReplace (!validPath) ("no-avatar")
+    guardReplace (!validPath) ("no-avatar"),
+    guardReplace (editable ?? false) ("editable")
   ))
 
   return (
