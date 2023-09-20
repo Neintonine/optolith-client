@@ -268,6 +268,7 @@ export const petsReducer =
       }
 
       case ActionTypes.SET_PET_AVATAR:
+      case ActionTypes.DELETE_PET_AVATAR:
       case ActionTypes.SET_PET_NAME:
       case ActionTypes.SET_PET_SIZE:
       case ActionTypes.SET_PET_TYPE:
