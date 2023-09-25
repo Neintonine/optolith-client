@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0-ied-alpha.3](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.2...v1.6.0-ied-alpha.3) (2023-09-25)
+
+
+### Bug Fixes
+
+* **adjusting-pet-image-in-pdf:** adjusts pet image in hero sheet ([02ccd93](https://github.com/elyukai/optolith-client/commit/02ccd93e752d9f52a2ab9595bc4d8d7c6a2c811b))
+
 ## [1.6.0-ied-alpha.2](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.1...v1.6.0-ied-alpha.2) (2023-09-25)
 
 
