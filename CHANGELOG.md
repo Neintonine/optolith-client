@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0-ied-alpha.2](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.1...v1.6.0-ied-alpha.2) (2023-09-25)
+
+
+### Features
+
+* **pet-editor-overhaul:** overhauls the pet editor ([28c2f09](https://github.com/elyukai/optolith-client/commit/28c2f092fc688e6956c2d38d7522b83d41902af1))
+
+
+### Bug Fixes
+
+* **adjusting-pet-image-in-pdf:** adjusts pet image for sheet to account for transparency ([19ad39a](https://github.com/elyukai/optolith-client/commit/19ad39a24bb0c72838e75eb9f87b91acdcb695fb))
+* **disable-auto-update:** disables the auto-updater ([0185c9e](https://github.com/elyukai/optolith-client/commit/0185c9e4913af61ab3587e76f5cc58764869cae2))
+* **pet-editor-overhaul:** fixes not deleting pet avatar on click ([7534fed](https://github.com/elyukai/optolith-client/commit/7534fedbcbb69e10d98e74873ef971f9d12c44ad))
+
 ## [1.6.0-ied-alpha.1](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.0...v1.6.0-ied-alpha.1) (2023-09-18)
 
 ### Build errors
