@@ -1,13 +1,9 @@
 import React from "react"
-import { fmap, fmapF } from "../../../Data/Functor"
-import { Maybe, or } from "../../../Data/Maybe"
-import { lte } from "../../../Data/Num"
 import { Record } from "../../../Data/Record"
 import { EditPet } from "../../Models/Hero/EditPet"
 import { StaticDataRecord } from "../../Models/Wiki/WikiModel"
 import { translate } from "../../Utilities/I18n"
 import { IconButton } from "../Universal/IconButton"
-import { TextBox } from "../Universal/TextBox"
 import { TextField } from "../Universal/TextField"
 
 const EPA = EditPet.A
@@ -28,9 +24,9 @@ interface ActionListProps {
 }
 
 function useForceUpdate () {
-  const [ value, setValue ] = React.useState (0) // integer state
+  const [ _, setValue ] = React.useState (0)
 
-  return () => setValue (value => value + 1) // update state to force render
+  return () => setValue (value => value + 1)
 }
 
 const ActionList: React.FC<ActionListProps> = props => {
@@ -41,8 +37,8 @@ const ActionList: React.FC<ActionListProps> = props => {
   } = props
 
   const abilityMarkdown = abilities.map ((value, index) => {
-    const change =
-      newValue => {
+    // @ts-ignore
+    const change = newValue => {
         abilities[index] = newValue
 
         updated (abilities)

@@ -1,6 +1,6 @@
 import React from "react"
 import { fnullStr, List, notNullStr } from "../../../Data/List"
-import { Just, Maybe } from "../../../Data/Maybe"
+import { Just } from "../../../Data/Maybe"
 import { EditPet } from "../../Models/Hero/EditPet"
 import { Record } from "../../../Data/Record"
 import { StaticDataRecord } from "../../Models/Wiki/WikiModel"

@@ -3,7 +3,6 @@ import {
   DerivedCharacteristicId,
 } from "../../../../app/Database/Schema/DerivedCharacteristics/DerivedCharacteristics.l10n"
 import { fmap } from "../../../Data/Functor"
-import { set } from "../../../Data/Lens"
 import { consF, List } from "../../../Data/List"
 import { Just, Nothing } from "../../../Data/Maybe"
 import { foldr } from "../../../Data/OrderedMap"
@@ -20,7 +19,6 @@ import { DerivedCharacteristic } from "../../Models/Wiki/DerivedCharacteristic"
 import { StaticData, StaticDataRecord } from "../../Models/Wiki/WikiModel"
 import { Record } from "../../../Data/Record"
 import { translate } from "../../Utilities/I18n"
-import { addPoint } from "../../Utilities/Increasable/increasableUtils"
 import { toIntTypeSafe } from "../../Utilities/NumberUtils"
 import { pipe } from "../../Utilities/pipe"
 import { renderMaybe } from "../../Utilities/ReactUtils"
@@ -145,18 +143,24 @@ const MainAttributes: React.FC<MainAttributesProps> = props => {
 
   const addPoint = React.useCallback (
     id => {
+      // @ts-ignore
       const setFunction = functions[id]
+      // @ts-ignore
       values[id]++
 
+      // @ts-ignore
       setFunction (`${values[id]}`)
     },
     []
   )
   const removePoint = React.useCallback (
     id => {
+      // @ts-ignore
       const setFunction = functions[id]
+      // @ts-ignore
       values[id]--
 
+      // @ts-ignore
       setFunction (`${values[id]}`)
     },
     []
@@ -176,6 +180,7 @@ const MainAttributes: React.FC<MainAttributesProps> = props => {
         min: min_value,
         stateEntry: AttributeDependent ({
           id: "",
+          // @ts-ignore
           value: values[id],
           mod: 0,
           dependencies: Nothing,
@@ -265,6 +270,7 @@ const SideAttributes: React.FC<SideAttributesProps> = props => {
 
   const attributes = []
   for (const sideAttributesKey in sideAttributes) {
+    // @ts-ignore
     const sideAttribute = sideAttributes [sideAttributesKey]
 
     const attribute = AttributeWithRequirements ({
@@ -290,8 +296,11 @@ const SideAttributes: React.FC<SideAttributesProps> = props => {
   const addPointCallback =
     React.useCallback (
       id => {
+        // @ts-ignore
         const setFunc = sideAttributes[id].setValue
+        // @ts-ignore
         sideAttributes[id].value++
+        // @ts-ignore
         setFunc (`${sideAttributes[id].value}`)
       },
       [ sideAttributes ]
@@ -300,9 +309,12 @@ const SideAttributes: React.FC<SideAttributesProps> = props => {
   const subPointCallback =
     React.useCallback (
       id => {
+        // @ts-ignore
         const setFunc = sideAttributes[id].setValue
+        // @ts-ignore
         sideAttributes[id].value--
 
+        // @ts-ignore
         setFunc (`${sideAttributes[id].value}`)
       },
       [ sideAttributes ]

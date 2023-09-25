@@ -1,18 +1,9 @@
 import * as React from "react"
-import {
-  DerivedCharacteristicId,
-} from "../../../../app/Database/Schema/DerivedCharacteristics/DerivedCharacteristics.l10n"
-import { fmap } from "../../../Data/Functor"
 import { fromJust, isJust, Maybe } from "../../../Data/Maybe"
-import { lookup, lookupF } from "../../../Data/OrderedMap"
 import { Record } from "../../../Data/Record"
 import { EditPet } from "../../Models/Hero/EditPet"
-import { Attribute } from "../../Models/Wiki/Attribute"
-import { DerivedCharacteristic } from "../../Models/Wiki/DerivedCharacteristic"
 import { StaticData, StaticDataRecord } from "../../Models/Wiki/WikiModel"
 import { translate } from "../../Utilities/I18n"
-import { pipe } from "../../Utilities/pipe"
-import { renderMaybe } from "../../Utilities/ReactUtils"
 import { BorderButton } from "../Universal/BorderButton"
 import { Hr } from "../Universal/Hr"
 import { Page } from "../Universal/Page"
@@ -24,21 +15,7 @@ import { PetEditorAttack } from "./PetEditorAttack"
 import { PetEditorAttributes } from "./PetEditorAttributes"
 import { PetEditorGeneral } from "./PetEditorGeneral"
 
-const SDA = StaticData.A
 const EPA = EditPet.A
-
-const getAttrShort =
-  (attrs: StaticData["attributes"]) =>
-    pipe (lookupF (attrs), fmap (Attribute.A.short), renderMaybe)
-
-const getDCShort =
-  (id: DerivedCharacteristicId) =>
-    pipe (
-      SDA.derivedCharacteristics,
-      lookup (id),
-      fmap (DerivedCharacteristic.A.short),
-      renderMaybe
-    )
 
 export interface PetEditorProps {
   attributes: StaticData["attributes"]

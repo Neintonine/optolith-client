@@ -89,6 +89,7 @@ export const PetEditorAttack: React.FC<Props> = props => {
 
   const addPoint = React.useCallback (
     id => {
+      // @ts-ignore
       const value = values[id]
 
       value.value++
@@ -98,6 +99,7 @@ export const PetEditorAttack: React.FC<Props> = props => {
   )
   const subPoint = React.useCallback (
     id => {
+      // @ts-ignore
       const value = values[id]
 
       value.value--
