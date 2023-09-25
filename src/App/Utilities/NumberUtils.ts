@@ -110,6 +110,10 @@ export const toInt =
   (e: string): Maybe<number> =>
     e.length > 0 && isInteger (e) ? Just (unsafeToInt (e)) : Nothing
 
+export const toIntTypeSafe =
+  (e: string): number =>
+    e.length > 0 && isInteger (e) ? unsafeToInt (e) : 0
+
 /**
  * Converts a string to a decimal number. If the string is not a valid natural
  * number, it returns `Nothing`, otherwise a `Just` of the number.

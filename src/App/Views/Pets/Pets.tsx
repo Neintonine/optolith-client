@@ -1,8 +1,7 @@
 import * as React from "react"
-import { fmap } from "../../../Data/Functor"
 import { map, toArray } from "../../../Data/List"
 import { Maybe } from "../../../Data/Maybe"
-import { elems, OrderedMap, size } from "../../../Data/OrderedMap"
+import { elems, OrderedMap } from "../../../Data/OrderedMap"
 import { Record } from "../../../Data/Record"
 import { EditPet } from "../../Models/Hero/EditPet"
 import { Pet } from "../../Models/Hero/Pet"
@@ -129,7 +128,7 @@ export function Pets (props: PetsProps) {
   } = props
 
   return (
-    <Page id="pets">
+    <Page id="pets" vertical>
       <PetEditor
         attributes={attributes}
         petInEditor={petInEditor}
@@ -173,18 +172,13 @@ export function Pets (props: PetsProps) {
         setAbilities={setAbilities}
         setNotes={setNotes}
         />
-      {
-        Maybe.elem (0) (fmap (size) (pets))
-          ? (
-            <Options>
-              <BorderButton
-                label={translate (staticData) ("general.dialogs.addbtn")}
-                onClick={createPet}
-                />
-            </Options>
-          )
-          : null
-      }
+
+      <Options>
+        <BorderButton
+          label={translate (staticData) ("general.dialogs.addbtn")}
+          onClick={createPet}
+          />
+      </Options>
       <Scroll>
         <ListView>
           {toNewMaybe (pets)

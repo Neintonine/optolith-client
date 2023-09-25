@@ -1,0 +1,160 @@
+.pet-editor .slidein-content {
+  flex-direction: column;
+
+  .btn-container {
+    margin: 1rem 1rem 0;
+    text-align: right;
+
+    .btn {
+      width: 200px;
+    }
+  }
+}
+
+.pet-editor-part {
+  display: flex;
+  justify-content: center;
+
+  &.vertical {
+    flex-direction: column;
+  }
+}
+
+.has-attributes {
+  .main {
+    justify-content: center;
+    padding-bottom: 16px;
+
+    display: flex;
+
+    .number-box {
+      top: 70px;
+      right: -6px;
+      width: 24px;
+      z-index: 2;
+
+      + .btn-round {
+        margin-top: 8px;
+      }
+    }
+
+  }
+
+  .attr .value {
+    border: 2px solid transparent;
+    padding: 2px;
+  }
+
+  .attribute-adjustment {
+    margin: 10px 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > span::after {
+      content: ":";
+    }
+
+    > .dropdown {
+      margin: 0 0 0 16px;
+      width: 200px;
+    }
+  }
+
+  .value-inner {
+    border: 1px solid var(--separator-color-transparent);
+    padding: 1px;
+
+    > div {
+      width: 45px;
+      height: 45px;
+      text-align: center;
+      font: bold 28px/45px Alegreya Sans;
+      font-variant-numeric: lining-nums;
+      color: var(--headings-color);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+  }
+
+  .attr {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: none;
+    position: relative;
+    gap: .4rem;
+
+    &.ATTR_1 > .value {
+      border-color: var(--courage-color);
+    }
+
+    &.ATTR_2 > .value {
+      border-color: var(--sagacity-color);
+    }
+
+    &.ATTR_3 > .value {
+      border-color: var(--intuition-color);
+    }
+
+    &.ATTR_4 > .value {
+      border-color: var(--charisma-color);
+    }
+
+    &.ATTR_5 > .value {
+      border-color: var(--dexterity-color);
+    }
+
+    &.ATTR_6 > .value {
+      border-color: var(--agility-color);
+    }
+
+    &.ATTR_7 > .value {
+      border-color: var(--constitution-color);
+    }
+
+    &.ATTR_8 > .value {
+      border-color: var(--strength-color);
+    }
+  }
+
+  .permanent {
+    .value-inner > div {
+      height: 23px;
+      line-height: 23px;
+      font-size: 14px;
+    }
+
+    .number-box {
+      top: 20px;
+    }
+
+    .placeholder {
+      width: 77px;
+    }
+  }
+}
+.overlay > .calc-attr-overlay {
+  width: 280px;
+
+  p.calc-text {
+    font-style: italic;
+  }
+}
+
+#pet-editor-notes {
+  .textfield {
+    width: auto;
+    textarea {
+      min-width: 600px;
+    }
+  }
+}
+
+@import "PetEditorGeneral";
+@import "PetEditorAttributes";
+@import "PetEditorAttack";
+@import "PetEditorActions";

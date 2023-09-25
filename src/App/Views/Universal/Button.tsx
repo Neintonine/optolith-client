@@ -38,6 +38,7 @@ export const Button: React.FC<Props> = props => {
   className = classListMaybe (List (
     Just ("btn"),
     Just (orN (round) ? "btn-round" : "btn-text"),
+    Just (className ?? ""),
     guardReplace (orN (primary)) ("btn-primary"),
     guardReplace (orN (flat)) ("btn-flat"),
     guardReplace (orN (autoWidth)) ("autoWidth"),
