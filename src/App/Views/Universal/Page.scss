@@ -8,4 +8,8 @@
 	position: relative;
 	overflow: hidden;
 	height: 100%;
+
+	&.vertical {
+		flex-direction: column;
+	}
 }

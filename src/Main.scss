@@ -104,6 +104,7 @@ p {
 @import "App/Views/Universal/TitleBar";
 @import "App/Views/Universal/TooltipToggle";
 @import "App/Views/Universal/VerticalList";
+@import "App/Views/Universal/HorizontalList";
 
 @import "App/Views/App";
 @import "App/Views/Router/Router";
@@ -126,6 +127,7 @@ p {
 @import "App/Views/NavBar/NavigationBarSubTabs";
 @import "App/Views/Pact/Pact";
 @import "App/Views/Pets/Pets";
+@import "App/Views/Pets/PetEditor";
 @import "App/Views/Profile/Profile";
 @import "App/Views/RCPOptionSelections/RCPOptionSelections";
 @import "App/Views/Rules/Rules";

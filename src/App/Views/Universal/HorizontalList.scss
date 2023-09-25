@@ -1,4 +1,7 @@
-.vertical-list {
+.horizontal-list {
+	display: flex;
+	flex-direction: row;
+
 	> span:not(:last-child)::after {
 		content: '';
 		background: var(--separator-color-transparent);

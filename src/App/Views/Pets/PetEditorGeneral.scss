@@ -1,0 +1,54 @@
+#pet-editor-general {
+  display: flex;
+  justify-content: center;
+
+  .text {
+    width: 550px;
+  }
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+
+    .avatar-wrapper {
+      flex: 1 0 auto;
+      border-width: 4px;
+      width: 150px;
+      height: 150px;
+    }
+
+    .text-wrapper {
+      flex: 1 1 100%;
+      margin-left: 26px;
+
+      --size: 38px;
+
+      .caption {
+        margin-right: .2rem;
+      }
+
+      > h1 {
+        margin: 0;
+        font: 400 var(--size)/var(--size) Alegreya Sans;
+        letter-spacing: 0.025em;
+        color: var(--headings-color);
+      }
+
+      > h1, > div.change-input {
+        height: var(--size);
+      }
+
+      > div:not(.change-input) {
+        margin: 4px 0 0;
+
+        span:last-child {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .ap-entry {
+      width: 5rem;
+    }
+  }
+}
