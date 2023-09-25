@@ -215,11 +215,11 @@
 			flex: none;
 
 			.avatar-wrapper {
-				border: 0.3mm solid black;
-				background: none;
-        padding: 0;
-        width: 24mm;
-        height: 24mm;
+				border: none;
+				background: transparent;
+				padding: 0;
+				width: 24mm;
+				height: 24mm;
 
 				> .avatar {
 					width: calc(100% + 0.15mm);
