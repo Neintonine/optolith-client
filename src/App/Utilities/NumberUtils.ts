@@ -1,6 +1,15 @@
 import { not } from "../../Data/Bool"
 import { List, subscript } from "../../Data/List"
-import { bindF, ensure, fromMaybe, Just, Maybe, Nothing } from "../../Data/Maybe"
+import {
+  bindF,
+  ensure, fromJust,
+  fromMaybe,
+  isMaybe,
+  isNothing,
+  Just,
+  Maybe,
+  Nothing,
+} from "../../Data/Maybe"
 import { dec } from "../../Data/Num"
 import { minus } from "./Chars"
 import { pipe } from "./pipe"
@@ -111,8 +120,22 @@ export const toInt =
     e.length > 0 && isInteger (e) ? Just (unsafeToInt (e)) : Nothing
 
 export const toIntTypeSafe =
-  (e: string): number =>
-    e.length > 0 && isInteger (e) ? unsafeToInt (e) : 0
+  (e: string|Maybe<string>): number => {
+    const val: string = (() => {
+      if (isMaybe (e)) {
+        if (isNothing (e)) {
+          return ""
+        }
+
+        return fromJust (e)
+      }
+
+      return e
+    }) ()
+
+
+    return val.length > 0 && isInteger (val) ? unsafeToInt (val) : 0
+  }
 
 /**
  * Converts a string to a decimal number. If the string is not a valid natural

@@ -5,7 +5,7 @@ import { equals } from "../../../Data/Eq"
 import { fmapF } from "../../../Data/Functor"
 import { find, List } from "../../../Data/List"
 import {
-  bindF,
+  bindF, fromJust, isNothing,
   Just,
   Maybe,
   maybeRNull,
@@ -64,6 +64,7 @@ import { Scroll } from "../Universal/Scroll"
 import { BelongingsSheet } from "./BelongingsSheet/BelongingsSheet"
 import { CombatSheet } from "./CombatSheet/CombatSheet"
 import { CombatSheetZones } from "./CombatSheet/CombatSheetZones"
+import { PetSheet } from "./PetSheet/PetSheet"
 import { RulesSheet } from "./RulesSheet/RulesSheet"
 import { LiturgicalChantsSheet } from "./LiturgicalChantsSheet/LiturgicalChantsSheet"
 import { MainSheet } from "./MainSheet/MainSheet"
@@ -112,7 +113,7 @@ export interface SheetsStateProps {
   shieldsAndParryingWeapons: Maybe<Record<ShieldOrParryingWeapon>[]>
   skills: Maybe<List<Record<SkillCombined>>>
   items: Maybe<List<Record<ItemForView>>>
-  pet: Maybe<Record<Pet>>
+  pets: Maybe<List<Record<Pet>>>
   purse: Maybe<Record<Purse>>
   totalPrice: Maybe<number>
   totalWeight: Maybe<number>
@@ -195,7 +196,7 @@ export const Sheets: React.FC<Props> = props => {
     armorZones,
 
     items,
-    pet,
+    pets,
     purse,
     totalPrice,
     totalWeight,
@@ -246,8 +247,6 @@ export const Sheets: React.FC<Props> = props => {
   )
   const hasRules = customRules.total > 0
   const displayRulePage = hasRules && showRules > 0
-
-  console.log("show rules", showRules)
 
   return (
     <Page id="sheets">
@@ -411,12 +410,23 @@ export const Sheets: React.FC<Props> = props => {
           attributes={attributes}
           items={items}
           staticData={staticData}
-          pet={pet}
           purse={purse}
           totalPrice={totalPrice}
           totalWeight={totalWeight}
           background={background}
           />
+        {
+          isNothing (pets)
+          ? null
+          : (
+            <PetSheet
+              staticData={staticData}
+              attributes={attributes}
+              background={background}
+              pets={fromJust (pets)}
+              />
+            )
+        }
         {pipe_ (
           maybeArcaneEnergy,
           bindF (pipe (snd, DerivedCharacteristicValues.A.value)),

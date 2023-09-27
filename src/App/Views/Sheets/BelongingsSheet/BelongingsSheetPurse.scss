@@ -1,0 +1,73 @@
+#belongings .purse {
+  height: 100%;
+  margin-top: .7cm;
+
+  .textbox {
+    height: 100%;
+  }
+
+  .valuables-container {
+    display: flex;
+    height: 100%;
+    align-items: flex-start;
+    gap: 0.5cm;
+
+    label {
+      color: black;
+      font: bold 16px Alegreya;
+    }
+
+    .money-table {
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      width: fit-content;
+      height: fit-content;
+
+      --size: .65cm;
+
+      tr:first-child td {
+        border-top-width: .25pt;
+      }
+
+      td {
+        font-size: larger;
+        height: var(--size);
+        min-width: var(--size);
+
+        border-left-width: .25pt;
+
+        &.money-name {
+          width: 3cm;
+        }
+
+        &.value-bearer {
+          text-align: center;
+        }
+
+        &:first-child {
+          border-left-width: 0;
+        }
+        &:first-child {
+          border-left-width: 0;
+        }
+
+      }
+    }
+
+    .labelbox.specifics {
+      flex-direction: column-reverse;
+
+      label {
+        padding-bottom: 6px;
+      }
+
+      .box {
+        width: 28mm;
+        font: 500 10px/3.4mm Alegreya Sans;
+        padding: 0 1mm;
+        height: 24mm;
+      }
+    }
+  }
+}

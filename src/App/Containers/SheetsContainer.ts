@@ -15,7 +15,7 @@ import { getDerivedCharacteristics } from "../Selectors/derivedCharacteristicsSe
 import { getStartEl } from "../Selectors/elSelectors"
 import { getAllItems, getArmors, getArmorZones, getMeleeWeapons, getRangedWeapons, getShieldsAndParryingWeapons, getTotalPrice, getTotalWeight } from "../Selectors/equipmentSelectors"
 import { getBlessingsForSheet, getLiturgicalChantsForSheet } from "../Selectors/liturgicalChantsSelectors"
-import { getPet } from "../Selectors/petsSelectors"
+import { getAllPets } from "../Selectors/petsSelectors"
 import { getCurrentFullProfessionName } from "../Selectors/professionSelectors"
 import { getRace } from "../Selectors/raceSelectors"
 import { getConditions, getSkillPages, getSkillsByGroup, getStates } from "../Selectors/sheetSelectors"
@@ -26,7 +26,7 @@ import {
   getSheetCheckAttributeValueVisibility,
   getSheetShowRules,
   getSheetUseParchment,
-  getSheetZoomFactor
+  getSheetZoomFactor,
 } from "../Selectors/uisettingsSelectors"
 import { requestExportHeroAsRptok } from "../Utilities/MapToolExporter"
 import { pipe } from "../Utilities/pipe"
@@ -59,7 +59,7 @@ const mapStateToProps = (state: AppStateRecord, ownProps: SheetsOwnProps): Sheet
   shieldsAndParryingWeapons: getShieldsAndParryingWeapons (state),
   skills: getAllSkills (state),
   items: getAllItems (state),
-  pet: getPet (state),
+  pets: getAllPets (state),
   useParchment: getSheetUseParchment (state),
   showRules: getSheetShowRules (state),
   zoomFactor: getSheetZoomFactor (state),
