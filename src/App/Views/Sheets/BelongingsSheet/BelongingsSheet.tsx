@@ -1,13 +1,12 @@
 import * as React from "react"
 import { equals } from "../../../../Data/Eq"
 import { fmap, fmapF } from "../../../../Data/Functor"
-import { filter, find, flength, intercalate, List, map, splitAt } from "../../../../Data/List"
-import { fromMaybe, Just, Maybe, Nothing } from "../../../../Data/Maybe"
+import { find, flength, List, splitAt } from "../../../../Data/List"
+import { fromMaybe, Just, Maybe } from "../../../../Data/Maybe"
 import { divideBy, max, multiply } from "../../../../Data/Num"
 import { Record } from "../../../../Data/Record"
 import { fst, Pair, snd } from "../../../../Data/Tuple"
 import { AttrId } from "../../../Constants/Ids"
-import { Pet } from "../../../Models/Hero/Pet"
 import { Purse } from "../../../Models/Hero/Purse"
 import { AttributeCombined, AttributeCombinedA_ } from "../../../Models/View/AttributeCombined"
 import { ItemForView } from "../../../Models/View/ItemForView"
@@ -21,13 +20,12 @@ import { Sheet } from "../Sheet"
 import { SheetBackground } from "../SheetBackgroundDropdown"
 import { SheetWrapper } from "../SheetWrapper"
 import { BelongingsSheetItemsColumn } from "./BelongingsSheetItemsColumn"
-import { BelongingsSheetPet } from "./BelongingsSheetPet"
+import { BelongingsSheetPurse } from "./BelongingsSheetPurse"
 
 interface Props {
   attributes: List<Record<AttributeCombined>>
   items: Maybe<List<Record<ItemForView>>>
   staticData: StaticDataRecord
-  pet: Maybe<Record<Pet>>
   purse: Maybe<Record<Purse>>
   totalPrice: Maybe<number>
   totalWeight: Maybe<number>
@@ -42,7 +40,6 @@ export const BelongingsSheet: React.FC<Props> = props => {
     purse,
     totalPrice: maybeTotalPrice,
     totalWeight: maybeTotalWeight,
-    pet,
     background,
   } = props
 
@@ -129,77 +126,28 @@ export const BelongingsSheet: React.FC<Props> = props => {
                   renderMaybe
                 )}
               </span>
-            </div>
-          </TextBox>
-          <TextBox
-            label={translate (staticData) ("sheets.belongingssheet.purse.title")}
-            className="purse"
-            >
-            <div className="top">
-              <LabelBox
-                className="money"
-                label={translate (staticData) ("sheets.belongingssheet.purse.ducats")}
-                value={fmapF (purse) (Purse.A.d)}
-                />
-              <LabelBox
-                className="money"
-                label={translate (staticData) ("sheets.belongingssheet.purse.silverthalers")}
-                value={fmapF (purse) (Purse.A.s)}
-                />
-              <LabelBox
-                className="money"
-                label={translate (staticData) ("sheets.belongingssheet.purse.halers")}
-                value={fmapF (purse) (Purse.A.h)}
-                />
-              <LabelBox
-                className="money"
-                label={translate (staticData) ("sheets.belongingssheet.purse.kreutzers")}
-                value={fmapF (purse) (Purse.A.k)}
-                />
-              <LabelBox
-                className="specifics"
-                label={translate (staticData) ("sheets.belongingssheet.purse.gems")}
-                value={fmapF (mitems)
-                             (pipe (
-                               filter (pipe (ItemForView.A.gr, equals (16))),
-                               map (ItemForView.A.name),
-                               intercalate (", ")
-                             ))}
-                />
-              <LabelBox
-                className="specifics"
-                label={translate (staticData) ("sheets.belongingssheet.purse.jewelry")}
-                value={fmapF (mitems)
-                             (pipe (
-                               filter (pipe (ItemForView.A.gr, equals (15))),
-                               map (ItemForView.A.name),
-                               intercalate (", ")
-                             ))}
-                />
-              <LabelBox
-                className="specifics"
-                label={translate (staticData) ("sheets.belongingssheet.purse.other")}
-                value={Nothing}
-                />
-            </div>
-            <div className="fill" />
-            <div className="carrying-capacity">
-              <div className="left">
-                <h3>{translate (staticData) ("sheets.belongingssheet.carryingcapacity.title")}</h3>
-                <p>{translate (staticData) ("sheets.belongingssheet.carryingcapacity.calc")}</p>
+              <div className="fill" />
+              <div className="carrying-capacity">
+                <div className="left">
+                  <h3>
+                    {translate
+                        (staticData)
+                        ("sheets.belongingssheet.carryingcapacity.title")}
+                  </h3>
+                  <p>{translate (staticData) ("sheets.belongingssheet.carryingcapacity.calc")}</p>
+                </div>
+                <LabelBox
+                  label={translate (staticData) ("sheets.belongingssheet.carryingcapacity.label")}
+                  value={Just (localizeWeight (staticData) (strength * 2))}
+                  />
               </div>
-              <LabelBox
-                label={translate (staticData) ("sheets.belongingssheet.carryingcapacity.label")}
-                value={Just (localizeWeight (staticData) (strength * 2))}
-                />
             </div>
           </TextBox>
         </div>
-        <div className="fill" />
-        <BelongingsSheetPet
-          attributes={attributes}
+        <BelongingsSheetPurse
           staticData={staticData}
-          pet={pet}
+          purse={purse}
+          items={mitems}
           />
       </Sheet>
     </SheetWrapper>

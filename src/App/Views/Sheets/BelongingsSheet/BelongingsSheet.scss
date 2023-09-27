@@ -66,6 +66,7 @@
 			display: flex;
 			height: 9mm;
 			text-align: center;
+			margin-left: 1.5cm;
 
 			label {
 				display: block;
@@ -85,55 +86,16 @@
 				}
 			}
 		}
-	}
-
-	.fill {
-		flex: 1 1 auto;
-	}
-
-	.purse {
-		display: flex;
-		flex-direction: column;
-		width: 44mm;
-		margin-left: 4mm;
-		flex: none;
-
-		h3 {
-			margin-bottom: 4mm;
-		}
-
-		.top {
-			.labelbox {
-				margin-bottom: 2mm;
-				flex-direction: row-reverse;
-				align-items: flex-start;
-
-				label {
-					line-height: 4mm;
-					font-style: 10px;
-				}
-
-				.box {
-					width: 28mm;
-					font: 500 10px/3.4mm Alegreya Sans;
-					padding: 0 1mm;
-				}
-
-				&.money .box {
-					height: 4mm;
-				}
-
-				&.specifics .box {
-					height: 24mm;
-				}
-			}
-		}
 
 		.carrying-capacity {
 			display: flex;
 			justify-content: space-between;
 
+			margin-top: 1mm;
+
 			.left {
+				margin-right: 4mm;
+
 				h3 {
 					margin: calc(1mm + 9px) 0 0;
 				}
@@ -168,97 +130,9 @@
 		}
 	}
 
-	.pet {
-		.textbox {
-			width: 100%;
-		}
-
-		.row {
-			display: flex;
-			margin-top: 2mm;
-
-			div {
-				flex: 1 1 100%;
-				display: flex;
-
-				span {
-					flex: 1 1 100%;
-				}
-			}
-
-			.name, .size, .type {
-				.label {
-					flex: none;
-				}
-			}
-
-			.lp, .ae {
-				flex-grow: 1.5;
-			}
-
-			.attack, .dp, .reach {
-				flex-grow: 2;
-			}
-		}
-
-		.pet-content {
-			display: flex;
-		}
-
-		.left {
-			flex: 1 1 100%;
-			overflow: hidden;
-		}
-
-		.right {
-			margin-left: 12mm;
-			flex: none;
-
-			.avatar-wrapper {
-				border: none;
-				background: transparent;
-				padding: 0;
-				width: 24mm;
-				height: 24mm;
-
-				> .avatar {
-					width: calc(100% + 0.15mm);
-					background-color: transparent;
-				}
-
-				&::after {
-					display: none;
-				}
-			}
-
-			.avatar-wrapper, .avatar {
-				border-radius: 0;
-			}
-		}
-
-		.label {
-			font: bold 11px/3.8mm Alegreya;
-			letter-spacing: 0;
-			padding-right: 2mm;
-		}
-
-		.value {
-			font: 500 11px/4mm Alegreya Sans;
-		}
-
-		.row.pet-actions,
-		.row.pet-skills,
-		.row.pet-specialabilities,
-		.row.pet-notes {
-			div {
-				.label {
-					flex: 0 0 auto;
-				}
-
-				.value {
-					flex: 1 1 100%;
-				}
-			}
-		}
+	.fill {
+		flex: 1 1 auto;
 	}
 }
+
+@import "BelongingsSheetPurse";

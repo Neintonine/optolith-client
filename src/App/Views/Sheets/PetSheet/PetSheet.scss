@@ -1,0 +1,127 @@
+.sheet .pets-wrapper {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly !important;
+  height: 100%;
+
+  > div {
+    min-height: 40%;
+    max-height: 50%;
+
+    .pet {
+      --avatar-size: 3cm;
+      --avatar-padding: 1.25rem;
+
+      height: 100%;
+      position: relative;
+
+      display: block !important;
+
+      text-align: center;
+
+      .pet-avatar {
+        float: left;
+
+        padding-right: calc(var(--avatar-size) + var(--avatar-padding));
+
+        width: var(--avatar-size);
+        height: var(--avatar-size);
+
+        > .avatar-wrapper {
+          width: var(--avatar-size);
+          height: var(--avatar-size);
+
+          background-color: transparent;
+
+          .avatar {
+            background-color: transparent;
+          }
+        }
+      }
+
+      .infos {
+        justify-content: center;
+      }
+
+      span.info {
+        font: 500 12px/4.35mm Alegreya Sans;
+      }
+
+      .property-label {
+        font-weight: bold;
+      }
+
+      .attributes {
+        display: flex;
+        justify-content: center;
+      }
+
+      .sub-attributes {
+        .sheet-attribute.INI {
+          width: 12mm * 2 + 2mm * 2;
+        }
+      }
+
+      .abilities {
+        display: flex;
+        margin-top: 0.5rem;
+
+        .attack {
+          flex-grow: 0;
+          flex-shrink: 0;
+
+          text-align: center;
+
+          width: calc(var(--avatar-size) + var(--avatar-padding));
+          padding-right: 6mm;
+
+          .attack-label .property-label {
+            font-size: 10px;
+          }
+
+          .attack-attributes {
+            display: flex;
+          }
+
+        }
+
+        .general-abilities {
+          --elements: 3;
+
+          display: flex;
+          justify-content: space-evenly;
+          padding-left: 6mm;
+          width: 100%;
+
+          > div {
+            width: 33%;
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+
+            .info {
+              margin-bottom: 0.1cm;
+            }
+          }
+        }
+      }
+
+      .notice {
+        margin-left: calc(var(--avatar-size) + var(--avatar-padding));
+
+      }
+
+      .vertical-rule {
+        position: absolute;
+        top: 0;
+        left: calc(var(--avatar-size) + (var(--avatar-padding) / 2));
+
+        height: 100%;
+
+        border-right: 1px solid var(--separator-color-transparent);
+      }
+    }
+  }
+}
