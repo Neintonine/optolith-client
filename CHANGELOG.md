@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0-ied-alpha.5](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.4...v1.6.0-ied-alpha.5) (2023-09-29)
+
+
+### Bug Fixes
+
+* **pet-editor-notice:** fixes the word-break in notice part of the sheet ([2d778ce](https://github.com/elyukai/optolith-client/commit/2d778ceeba087c7ed5326979580c1366e3e660be))
+
 ## [1.6.0-ied-alpha.4](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.3...v1.6.0-ied-alpha.4) (2023-09-27)
 
 
