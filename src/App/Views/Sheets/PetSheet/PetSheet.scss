@@ -7,7 +7,6 @@
 
   > div {
     min-height: 40%;
-    max-height: 50%;
 
     .pet {
       --avatar-size: 3cm;
@@ -110,7 +109,9 @@
 
       .notice {
         margin-left: calc(var(--avatar-size) + var(--avatar-padding));
-
+        .info {
+          white-space: pre-line;
+        }
       }
 
       .vertical-rule {
