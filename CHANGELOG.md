@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0-ied-alpha.6](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.5...v1.6.0-ied-alpha.6) (2026-01-04)
+
+
+### Bug Fixes
+
+* fixes color in no-offical-release-warning ([1ed5531](https://github.com/elyukai/optolith-client/commit/1ed553142829cefb633a7a4d29f09af8ef0cdb12))
+* wraps installing extensions in a try catch ([1f8229b](https://github.com/elyukai/optolith-client/commit/1f8229bf45adad79cb6b60eceff8064cfb6ae2ad))
+
 ## [1.6.0-ied-alpha.5](https://github.com/elyukai/optolith-client/compare/v1.6.0-ied-alpha.4...v1.6.0-ied-alpha.5) (2023-09-29)
 
 
