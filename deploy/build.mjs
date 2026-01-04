@@ -2,7 +2,7 @@
 import builder from "electron-builder"
 import { getSystem } from "./platform.mjs"
 
-const [channel] = process.argv.slice(2)
+const [channel, platform] = process.argv.slice(2)
 
 if (channel !== "stable" && channel !== "prerelease") {
   throw new TypeError (`publishToServer requires a specified channel ("stable" or "prerelease"), but it received ${channel}`)
@@ -17,11 +17,17 @@ process.on ('unhandledRejection', error => {
   throw new Error(`Unhandled promise rejection: ${/** @type {Error} */ (error).toString ()}`)
 })
 
-const os = getSystem()
 
-const plaformKey = os === "linux" ? "LINUX" : os === "mac" ? "MAC" : "WINDOWS"
+function getPlatform() {
+  if (platform) {
+    return platform;
+  }
+
+  const os = getSystem()
+  return os === "linux" ? "LINUX" : os === "mac" ? "MAC" : "WINDOWS";
+}
 
 await builder.build({
   config,
-  targets: builder.Platform[plaformKey].createTarget(),
+  targets: builder.Platform[getPlatform()].createTarget(),
 })
